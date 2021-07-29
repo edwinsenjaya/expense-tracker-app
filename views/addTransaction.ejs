@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker App</title>
+  </head>
+  <body>
+    <h1>Expense Tracker App</h1>
+    <h3>Add Transaction</h3>
+    <form action="/user/register" method="post">
+      <label>Transaction Name</label><br />
+      <input type="text" name="name" /><br />
+      <label>Date</label><br />
+      <input type="date" name="date" /><br />
+      <label>Amount</label><br />
+      <input type="number" name="amount" /><br />
+      <label>Tags (Hold ctrl to select multiple tags)</label><br />
+      <select name="TagId" multiple>
+        <option selected disabled>Select Tags</option>
+        <% data.forEach(el => { %>
+        <option value="<%= el.id %>"><%= el.tag_name %></option>
+        <% }) %>
+      </select>
+      <input type="submit" value="Register" />
+    </form>
+  </body>
+</html>
