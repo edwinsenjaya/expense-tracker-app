@@ -1,30 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Expense Tracker App</title>
-  </head>
-  <body>
-    <h1>Expense Tracker App</h1>
-    <h3>Add Transaction</h3>
-    <form action="transaction/:id/add" method="post">
-      <label>Transaction Name</label><br />
-      <input type="text" name="name" /><br /><br />
-      <label>Date</label><br />
-      <input type="date" name="date" /><br /><br />
-      <label>Amount</label><br />
-      <input type="number" name="amount" /><br /><br />
-      <label>Tags </label><br /><br />
-      <select name="TagId" multiple>
-        <% data.forEach(el => { %>
-        <option value="<%= el.id %>"><%= el.tag_name %></option>
-        <% }) %></select
-      ><br />
-      <label>(Hold ctrl to select multiple tags)</label><br /><br />
-      <br /><br />
-      <input type="submit" value="Add Transaction" />
-    </form>
-  </body>
-</html>
+  <%- include('./partials/header')%>
+  <%- include('./partials/navbar')%>
+
+  <div class="container col-md-6">
+    <div class="row">
+      <div class="container col-md-6 mx-auto align-midle mt-5">
+        <h3 class="text-center">New Transaction</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="container col-md-6 mx-auto" >
+        <form action="/transaction/<% %>/add" method="POST">
+          <div class="form-row">
+            <div class="form-group col">
+              <input type="text" class="form-control" name="name" placeholder="Transaction Name">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <input type="date" name="date" class="form-control" placeholder="date">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <input type="number" class="form-control" name="amount" placeholder="amount e.g:100000">
+            </div>
+          </div>
+          <div class="form-row">
+            <select name="TagId" id="inputGroupSelect01" class="custom-select" multiple>
+              <% data.forEach(el => { %>
+              <option value="<%= el.id %>"><%= el.tag_name %></option>
+              <% }) %>
+            </select>
+            <p class="font-italic">-Hold ctrl to select multiple tags-</p>
+          </div>
+          <br>
+          <div class="form-row">
+            <button type="submit" value="Submit" class="btn btn-primary btn-md btn-block">Add Transaction</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <br>
+    <div class="container col-md-6 mx-auto align-midle">
+      <p class="text-center">I don`t want add new transaction</p>
+      <p class="text-center"><a href="/">Back</a></p>
+    </div>
+  </div>
+
+
+
+  <%- include('./partials/end')%>

@@ -14,7 +14,7 @@ class Controller {
   static getAddTransaction(req, res) {
     Tag.findAll()
       .then((data) => {
-        console.log(data, "<-- here");
+        // console.log(data, "<-- here");
         res.render("addTransaction", { data });
       })
       .catch((err) => {
@@ -23,7 +23,7 @@ class Controller {
   }
 
   static postAddTransaction(req, res) {
-    console.log("here");
+    // console.log("here");
     console.log(req.body);
     res.send(req.body);
   }
