@@ -1,8 +1,40 @@
 const { User } = require("../models");
+const session = require("express-session");
+const express = require("express");
+
+express().use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 class Controller {
-  static getLoginUser(req, res) {
+  static getLoginUser(_, res) {
     res.render("loginUser");
+  }
+
+  static postLoginUser(req, res) {
+    User.findAll({
+      where: {
+        email: req.body.email,
+        password: req.body.password,
+      },
+    })
+      .then((data) => {
+        if (
+          data[0].email === req.body.email &&
+          data[0].password === req.body.password
+        ) {
+          req.session.isLogin = true;
+          req.session.userId = data[0].id;
+          res.redirect("/transaction/table");
+        } else res.send("Wrong email or password");
+      })
+      .catch((_) => {
+        res.send("Wrong email or password");
+      });
   }
 
   static getRegisterUser(req, res) {
@@ -22,8 +54,7 @@ class Controller {
         res.redirect("/user/login");
       })
       .catch((err) => {
-        err = err.errors.map((el) => el.message);
-        res.send(err.join(" "));
+        res.send(err);
       });
   }
 }

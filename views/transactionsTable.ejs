@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker App</title>
+  </head>
+  <body>
+    <h1>Hi user how are you today</h1>
+    <h1>Your budget:</h1>
+    <h1>Your current balance:</h1>
+    <a href="/transaction/:id/add">Add Transaction</a>
+    <a href="/tags/:id">View Tags</a>
+    <table border="1">
+      <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Tags</th>
+        <th>Action</th>
+      </tr>
+      <% data.forEach(el => { %>
+      <tr>
+        <td><%= el.name %></td>
+        <td><%= el.amount %></td>
+        <td><%= el.date %></td>
+        <td>Tags</td>
+        <td>
+          <a href="/tags/<%= el.id %>/edit">Edit</a> |
+          <a href="/tags/<%= el.id %>/delete">Delete</a> |
+          <a href="/tags/<%= el.id %>/addTags">Add Tags</a>
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>

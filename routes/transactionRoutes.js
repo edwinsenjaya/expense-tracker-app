@@ -1,10 +1,11 @@
 const express = require("express");
 const Controller = require("../controllers/transactionController");
 const router = express.Router();
+const isUserLogin = require("../middleware/checkLogin");
 
-// router.get("/", Controller.viewCasts);
+router.get("/table", Controller.viewTransactionTable);
 
-// router.get("/add", Controller.getAddCast);
+router.get("/:id/add", Controller.getAddTransaction);
 // router.post("/add", Controller.postAddCast);
 
 // router.get("/:id/edit", Controller.getEditCast);
