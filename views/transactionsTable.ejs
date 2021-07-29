@@ -7,11 +7,14 @@
     <title>Expense Tracker App</title>
   </head>
   <body>
-    <h1>Hi user how are you today</h1>
-    <h1>Your budget:</h1>
-    <h1>Your current balance:</h1>
-    <a href="/transaction/:id/add">Add Transaction</a>
-    <a href="/tags/:id">View Tags</a>
+    <h1>
+      Hi <%= `${data[0].User.first_name} ${data[0].User.last_name}` %> how are
+      you today?
+    </h1>
+    <h1>Your budget: Rp <%= data[0].User.budget %></h1>
+    <h1>Your current balance: Rp <%= data[0].User.current_balance - sum %></h1>
+    <a href="/transaction/add">Add Transaction</a>
+    <a href="/tags">View Tags</a>
     <table border="1">
       <tr>
         <th>Name</th>
@@ -20,19 +23,19 @@
         <th>Tags</th>
         <th>Action</th>
       </tr>
-      <% data.forEach(el => { %>
+      <% data.forEach((el, i) => { %>
       <tr>
         <td><%= el.name %></td>
         <td><%= el.amount %></td>
         <td><%= el.date %></td>
-        <td>Tags</td>
+        <td><%= tags[i].join(', ') %></td>
         <td>
-          <a href="/tags/<%= el.id %>/edit">Edit</a> |
-          <a href="/tags/<%= el.id %>/delete">Delete</a> |
-          <a href="/tags/<%= el.id %>/addTags">Add Tags</a>
+          <a href="/transaction/<%= el.id %>/edit">Edit</a> |
+          <a href="/transaction/<%= el.id %>/delete">Delete</a>
         </td>
       </tr>
       <% }) %>
     </table>
+    <h1>Your total spending: Rp <%= sum %></h1>
   </body>
 </html>

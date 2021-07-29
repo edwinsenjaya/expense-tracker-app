@@ -5,14 +5,12 @@ const isUserLogin = require("../middleware/checkLogin");
 
 router.get("/table", Controller.viewTransactionTable);
 
-router.get("/:id/add", Controller.getAddTransaction);
-router.post("/:id/add", Controller.postAddTransaction);
+router.get("/add", Controller.getAddTransaction);
+router.post("/add", Controller.postAddTransaction);
 
-// router.get("/:id/edit", Controller.getEditCast);
-// router.post("/:id/edit", Controller.postEditCast);
+router.get("/:id/edit", Controller.getEditTransaction);
+router.post("/:id/edit", Controller.postEditTransaction);
 
-// router.get("/:id/seeMovies", Controller.getSeeMovies);
-
-// router.get("/:id/delete", Controller.deleteCast);
+router.get("/:id/delete", Controller.deleteTransaction);
 
 module.exports = router;

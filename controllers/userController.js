@@ -1,4 +1,4 @@
-const { User } = require("../models");
+const { User, Transaction } = require("../models");
 const session = require("express-session");
 const express = require("express");
 
@@ -16,6 +16,7 @@ class Controller {
   }
 
   static postLoginUser(req, res) {
+    let obj = {};
     User.findAll({
       where: {
         email: req.body.email,
@@ -29,8 +30,13 @@ class Controller {
         ) {
           req.session.isLogin = true;
           req.session.userId = data[0].id;
-          res.redirect("/transaction/table");
+          obj.user = data;
+          return Transaction.findAll();
         } else res.send("Wrong email or password");
+      })
+      .then((data) => {
+        obj.trans = data;
+        res.redirect(`/transaction/table`);
       })
       .catch((_) => {
         res.send("Wrong email or password");
