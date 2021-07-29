@@ -1,0 +1,53 @@
+  <%- include('./partials/header')%>
+  <%- include('./partials/navbar')%>
+
+  <div class="container col-md-6">
+    <div class="row">
+      <div class="container col-md-6 mx-auto align-midle mt-5">
+        <h3 class="text-center">New Transaction</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="container col-md-6 mx-auto" >
+        <form action="/transaction/<% %>/add" method="POST">
+          <div class="form-row">
+            <div class="form-group col">
+              <input type="text" class="form-control" name="name" placeholder="Transaction Name">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <input type="date" name="date" class="form-control" placeholder="date">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <input type="number" class="form-control" name="amount" placeholder="amount e.g:100000">
+            </div>
+          </div>
+          <div class="form-row">
+            <select name="TagId" id="inputGroupSelect01" class="custom-select" multiple>
+              <% data.forEach(el => { %>
+              <option value="<%= el.id %>"><%= el.tag_name %></option>
+              <% }) %>
+            </select>
+            <p class="font-italic">-Hold ctrl to select multiple tags-</p>
+          </div>
+          <br>
+          <div class="form-row">
+            <button type="submit" value="Submit" class="btn btn-primary btn-md btn-block">Add Transaction</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <br>
+    <div class="container col-md-6 mx-auto align-midle">
+      <p class="text-center">I don`t want add new transaction</p>
+      <p class="text-center"><a href="/">Back</a></p>
+    </div>
+  </div>
+
+
+
+  <%- include('./partials/end')%>
