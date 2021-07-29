@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker App</title>
+  </head>
+  <body>
+    <h1>Tags List</h1>
+    <a href="/transaction/table">View Transactions</a>
+    <table border="1">
+      <tr>
+        <th>No.</th>
+        <th>Tag Name</th>
+        <th>Total Spending</th>
+      </tr>
+      <% tag.forEach((el, i) => { %>
+      <tr>
+        <td><%= i + 1 %></td>
+        <td><%= el.tag_name %></td>
+        <td>
+          <%= newData[i].length > 0 ? newData[i].reduce((acc, cur) => acc + cur)
+          : 0 %>
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>

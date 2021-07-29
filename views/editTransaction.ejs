@@ -8,14 +8,22 @@
   </head>
   <body>
     <h1>Expense Tracker App</h1>
-    <h3>Add Transaction</h3>
-    <form action="/transaction/add" method="post">
+    <h3>Edit Transaction</h3>
+    <form action="/transaction/<%= trans.id %>/edit" method="post">
       <label>Transaction Name</label><br />
-      <input type="text" name="name" /><br /><br />
+      <input type="text" name="name" value="<%= trans.name %>" /><br /><br />
       <label>Date</label><br />
-      <input type="date" name="date" /><br /><br />
+      <input
+        type="date"
+        name="date"
+        value="<%= trans.date.toLocaleDateString('af-ZA') %>"
+      /><br /><br />
       <label>Amount</label><br />
-      <input type="number" name="amount" /><br /><br />
+      <input
+        type="number"
+        name="amount"
+        value="<%= trans.amount %>"
+      /><br /><br />
       <label>Tags </label><br /><br />
       <select name="TagId" multiple>
         <% tag.forEach(el => { %>
@@ -24,7 +32,7 @@
       ><br />
       <label>(Hold ctrl to select multiple tags)</label><br /><br />
       <br /><br />
-      <input type="submit" value="Add Transaction" />
+      <input type="submit" value="Edit Transaction" />
     </form>
   </body>
 </html>

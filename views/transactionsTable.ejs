@@ -1,42 +1,41 @@
-<%- include('./partials/header') %>
-<%- include('./partials/navbar')%>
-
-<div class="row">
-
-  <div class="container col-md-8 mt-5">
-    <h5>Hello, Alfian your Budget for this month is : Rp. 4.000.000</h5>
-    <p>Current Balance : Rp. 3.500.000</p>
-    <p><a class="btn btn-outline-primary btn-sm" href="/transaction/:id/add" role="button">New Transaction</a></p>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">No</th>
-          <th scope="col">Name</th>
-          <th scope="col">Ammount</th>
-          <th scope="col">Date</th>
-          <th scope="col">Tags</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-        <% data.forEach((el,idx)=>{ %>
-          <td><%= idx+1%></td>
-          <td><%= el.name %></td>
-          <td><%= el.amount %></td>
-          <td><%= el.date %></td>
-          <td>tags</td>
-          <td>
-            <a class="btn btn-outline-primary btn-sm" href="/tags/<%= el.id %>/edit" role="button">Edit</a> 
-            <a class="btn btn-outline-danger btn-sm" href="/tags/<%= el.id %>/delete" role="button">Delete</a>
-            <a class="btn btn-outline-success btn-sm" href="/tags/<%= el.id %>/addTags" role="button">Delete</a>
-          </td>
-        <% })%>
-        </tr>
-      </tbody>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker App</title>
+  </head>
+  <body>
+    <h1>
+      Hi <%= `${data[0].User.first_name} ${data[0].User.last_name}` %> how are
+      you today?
+    </h1>
+    <h1>Your budget: Rp <%= data[0].User.budget %></h1>
+    <h1>Your current balance: Rp <%= data[0].User.current_balance - sum %></h1>
+    <a href="/transaction/add">Add Transaction</a>
+    <a href="/tags">View Tags</a>
+    <table border="1">
+      <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Tags</th>
+        <th>Action</th>
+      </tr>
+      <% data.forEach((el, i) => { %>
+      <tr>
+        <td><%= el.name %></td>
+        <td><%= el.amount %></td>
+        <td><%= el.date %></td>
+        <td><%= tags[i].join(', ') %></td>
+        <td>
+          <a href="/transaction/<%= el.id %>/edit">Edit</a> |
+          <a href="/transaction/<%= el.id %>/delete">Delete</a>
+        </td>
+      </tr>
+      <% }) %>
     </table>
-  </div>
-</div>
-
-
-<%- include('./partials/end') %>
+    <h1>Your total spending: Rp <%= sum %></h1>
+  </body>
+</html>
