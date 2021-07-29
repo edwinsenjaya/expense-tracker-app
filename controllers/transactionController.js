@@ -1,4 +1,4 @@
-const { Transaction } = require("../models");
+const { Transaction, Tag } = require("../models");
 
 class Controller {
   static viewTransactionTable(req, res) {
@@ -12,9 +12,18 @@ class Controller {
   }
 
   static getAddTransaction(req, res) {
-    console.log(req.session);
+    Tag.findAll()
+      .then((data) => {
+        res.render("addTransaction", { data });
+      })
+      .catch((err) => {
+        res.send(err);
+      });
+  }
 
-    res.render("addTransaction");
+  static postAddTransaction(req, res) {
+    console.log("here");
+    console.log(req.body);
   }
 }
 
