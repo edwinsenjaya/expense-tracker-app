@@ -1,21 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Expense Tracker App</title>
-  </head>
-  <body>
-    <h1>Expense Tracker App</h1>
-    <h3>Login</h3>
-    <form action="/user/login" method="POST">
-      <label>Email</label><br />
-      <input type="text" name="email" /><br />
-      <label>Password</label><br />
-      <input type="password" name="password" /><br /><br />
-      <input type="submit" value="Login" />
-    </form>
-    <h5>Don't have an account? <a href="/user/register">Register here</a></h5>
-  </body>
-</html>
+<%- include('./partials/header') %>
+
+<div class="container col-md-6">
+  <div class="row">
+    <div class="container col-md-6 mx-auto align-midle mt-5">
+      <h3 class="text-center">Login</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container col-md-6 mx-auto" >
+      <form action="/user/login" method="POST">
+        <div class="form-row">
+          <div class="form-group col">
+            <input type="email" name="email" id="inputEmail4" class="form-control" placeholder="email@example.com">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col">
+            <input type="password" name="password" class="form-control" placeholder="secret password">
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" value="Login" class="btn btn-primary btn-md btn-block">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="container">
+    <img src="https://ibb.co/dp6R3sj" alt="">
+  </div>
+  <div class="container col-md-6 mx-auto align-midle">
+    <p class="text-center">Don`t have an account?</p>
+    <p class="text-center"><a href="/user/register">register</a></p>
+  </div>
+</div>
+
+<%- include('./partials/end')%>
