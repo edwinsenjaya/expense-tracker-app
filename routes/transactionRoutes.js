@@ -6,7 +6,7 @@ const isUserLogin = require("../middleware/checkLogin");
 router.get("/table", Controller.viewTransactionTable);
 
 router.get("/:id/add", Controller.getAddTransaction);
-// router.post("/add", Controller.postAddCast);
+router.post("/:id/add", Controller.postAddTransaction);
 
 // router.get("/:id/edit", Controller.getEditCast);
 // router.post("/:id/edit", Controller.postEditCast);

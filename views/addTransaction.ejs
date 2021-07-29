@@ -11,19 +11,20 @@
     <h3>Add Transaction</h3>
     <form action="/user/register" method="post">
       <label>Transaction Name</label><br />
-      <input type="text" name="name" /><br />
+      <input type="text" name="name" /><br /><br />
       <label>Date</label><br />
-      <input type="date" name="date" /><br />
+      <input type="date" name="date" /><br /><br />
       <label>Amount</label><br />
-      <input type="number" name="amount" /><br />
-      <label>Tags (Hold ctrl to select multiple tags)</label><br />
+      <input type="number" name="amount" /><br /><br />
+      <label>Tags </label><br /><br />
       <select name="TagId" multiple>
-        <option selected disabled>Select Tags</option>
         <% data.forEach(el => { %>
         <option value="<%= el.id %>"><%= el.tag_name %></option>
-        <% }) %>
-      </select>
-      <input type="submit" value="Register" />
+        <% }) %></select
+      ><br />
+      <label>(Hold ctrl to select multiple tags)</label><br /><br />
+      <br /><br />
+      <input type="submit" value="Add Transaction" />
     </form>
   </body>
 </html>
